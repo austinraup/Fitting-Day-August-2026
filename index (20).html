@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Callaway Tour Fitting · Five Iron Golf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#111111;--dark:#1a1a1a;--card:#222222;--lime:#C8E632;--lime-dark:#a8c020;--white:#ffffff;--muted:rgba(255,255,255,0.55);--border:rgba(255,255,255,0.12);--red:#e53935}
+html{background:var(--dark)}
+body{font-family:'Barlow',sans-serif;background:var(--dark);color:var(--white);min-height:100vh;font-size:16px;line-height:1.5}
+h1,h2,h3,.condensed{font-family:'Barlow Condensed',sans-serif}
+.topbar{background:var(--black);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--lime)}
+.topbar-logo{display:flex;align-items:center;gap:12px}
+.logo-mark{width:36px;height:36px;background:var(--lime);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--black);letter-spacing:-1px}
+.topbar-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:var(--white);line-height:1.1;letter-spacing:0.05em;text-transform:uppercase}
+.topbar-sub{font-size:11px;letter-spacing:0.15em;color:var(--lime);text-transform:uppercase;margin-top:1px}
+.admin-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'Barlow',sans-serif;font-size:12px;padding:6px 12px;border-radius:4px;cursor:pointer;letter-spacing:0.05em;text-transform:uppercase}
+.admin-btn:hover{border-color:var(--lime);color:var(--lime)}
+.admin-btn-secondary{background:transparent;border:1px solid var(--lime);color:var(--lime);font-family:'Barlow',sans-serif;font-size:13px;padding:8px 16px;border-radius:4px;cursor:pointer;letter-spacing:0.05em;text-transform:uppercase;transition:.15s}
+.admin-btn-secondary:hover{background:rgba(200,230,50,0.1)}
+.hero{background:var(--black);padding:48px 24px 40px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(200,230,50,0.06) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
+.hero-eyebrow{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--lime);margin-bottom:12px}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(36px,6vw,64px);color:var(--white);line-height:1;text-transform:uppercase;letter-spacing:0.02em;margin-bottom:4px}
+.hero h1 span{color:var(--lime)}
+.hero-divider{width:80px;height:3px;background:var(--lime);margin:16px auto;border-radius:2px}
+.hero-sub{font-size:15px;color:var(--muted);max-width:480px;margin:0 auto;line-height:1.6}
+.steps-wrap{padding:20px 24px 0;max-width:680px;margin:0 auto}
+.steps{display:flex;align-items:center;gap:0}
+.step-item{display:flex;align-items:center;gap:8px;flex:1}
+.step-num{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--muted);flex-shrink:0;transition:.2s}
+.step-label{font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);transition:.2s}
+.step-item.active .step-num{background:var(--lime);border-color:var(--lime);color:var(--black)}
+.step-item.active .step-label{color:var(--white)}
+.step-item.done .step-num{background:rgba(200,230,50,0.15);border-color:var(--lime);color:var(--lime)}
+.step-item.done .step-label{color:var(--lime)}
+.step-connector{flex:1;height:1px;background:var(--border);margin:0 8px;max-width:40px}
+.main{max-width:680px;margin:0 auto;padding:24px 24px 60px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;margin-bottom:16px}
+.card-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;text-transform:uppercase;letter-spacing:0.05em;color:var(--white);margin-bottom:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-row.full{grid-template-columns:1fr}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group label{font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)}
+.form-group label .req{color:var(--lime)}
+.form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:4px;padding:10px 12px;font-size:14px;color:var(--white);font-family:'Barlow',sans-serif;outline:none;width:100%;transition:border-color .15s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--lime)}
+.form-group select option{background:#222;color:var(--white)}
+.form-group textarea{resize:vertical;min-height:72px}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.25)}
+.consent-box{background:rgba(200,230,50,0.08);border:1px solid rgba(200,230,50,0.3);border-radius:6px;padding:14px 16px;display:flex;align-items:flex-start;gap:12px;margin-top:16px}
+.consent-box input[type=checkbox]{width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:var(--lime);cursor:pointer}
+.consent-box label{font-size:13px;color:var(--white);line-height:1.5;cursor:pointer}
+.consent-box label .req{color:var(--lime)}
+.btn-primary{width:100%;padding:14px;background:var(--lime);color:var(--black);border:none;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;transition:background .15s}
+.btn-primary:hover{background:var(--lime-dark)}
+.btn-primary:disabled{opacity:0.4;cursor:not-allowed}
+.btn-secondary{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'Barlow',sans-serif;font-size:14px;padding:10px 20px;border-radius:4px;cursor:pointer;transition:.15s}
+.btn-secondary:hover{border-color:var(--white);color:var(--white)}
+.btn-danger{background:transparent;border:1px solid var(--red);color:var(--red);font-family:'Barlow',sans-serif;font-size:14px;padding:10px 20px;border-radius:4px;cursor:pointer;transition:.15s}
+.btn-danger:hover{background:var(--red);color:var(--white)}
+.btn-row{display:flex;gap:10px;margin-top:16px}
+.btn-row .btn-primary{flex:1}
+.day-tabs{display:flex;gap:8px;margin-bottom:16px}
+.day-tab{flex:1;padding:10px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:4px;text-align:center;cursor:pointer;transition:.15s}
+.day-tab.active{background:rgba(200,230,50,0.1);border-color:var(--lime)}
+.day-tab-date{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:0.05em}
+.day-tab.active .day-tab-date{color:var(--lime)}
+.day-tab-pro{font-size:11px;color:var(--muted);margin-top:2px}
+.pro-section{margin-bottom:16px}
+.pro-label{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.slots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.slot-btn{padding:10px 8px;border-radius:4px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--white);cursor:pointer;text-align:center;transition:.15s;font-family:'Barlow',sans-serif}
+.slot-btn:hover:not(.taken):not(.active){border-color:rgba(200,230,50,0.4);background:rgba(200,230,50,0.05)}
+.slot-btn.active{background:rgba(200,230,50,0.15);border-color:var(--lime);color:var(--lime)}
+.slot-btn.taken{background:rgba(255,255,255,0.02);color:rgba(255,255,255,0.2);cursor:not-allowed;border-color:rgba(255,255,255,0.05)}
+.slot-time{font-size:13px;font-weight:500}
+.slot-status{font-size:11px;color:var(--muted);margin-top:2px}
+.slot-btn.active .slot-status{color:rgba(200,230,50,0.7)}
+.slot-btn.taken .slot-status{color:rgba(255,255,255,0.2)}
+.summary-table{width:100%;border-collapse:collapse}
+.summary-table tr{border-bottom:1px solid var(--border)}
+.summary-table tr:last-child{border-bottom:none}
+.summary-table td{padding:9px 0;font-size:14px;vertical-align:top}
+.summary-table td:first-child{color:var(--muted);width:40%;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;padding-right:12px;padding-top:11px}
+.booking-highlight{background:rgba(200,230,50,0.08);border:1px solid rgba(200,230,50,0.2);border-radius:6px;padding:12px 16px;margin-bottom:16px}
+.booking-highlight-row{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;font-size:14px;color:var(--muted);margin-bottom:4px}
+.booking-highlight-row:last-child{margin-bottom:0}
+.booking-highlight-row span{color:var(--white);font-weight:500}
+.success-icon{width:64px;height:64px;background:rgba(200,230,50,0.12);border:2px solid var(--lime);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px}
+.success-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;text-transform:uppercase;letter-spacing:0.05em;text-align:center;margin-bottom:8px}
+.success-sub{text-align:center;color:var(--muted);font-size:14px;margin-bottom:20px;line-height:1.6}
+.success-detail{background:rgba(255,255,255,0.04);border-radius:6px;padding:14px 16px;margin-bottom:8px;font-size:14px}
+.success-detail .label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--lime);margin-bottom:4px}
+.success-detail .value{color:var(--white);font-weight:500}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;overflow-y:auto}
+.modal-overlay.open{display:block}
+.modal{background:#1e1e1e;border:1px solid var(--border);border-radius:8px;max-width:720px;margin:32px auto;overflow:hidden}
+.modal-header{background:var(--black);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--lime)}
+.modal-header-left{display:flex;align-items:center;gap:10px}
+.modal-logo{width:28px;height:28px;background:var(--lime);border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;color:var(--black)}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;letter-spacing:0.08em}
+.modal-badge{font-size:11px;padding:3px 8px;border-radius:3px;letter-spacing:0.06em;text-transform:uppercase;background:rgba(200,230,50,0.15);color:var(--lime);border:1px solid rgba(200,230,50,0.3)}
+.modal-close{background:transparent;border:none;color:var(--muted);font-size:20px;cursor:pointer;padding:4px}
+.modal-close:hover{color:var(--white)}
+.modal-tabs{display:flex;border-bottom:1px solid var(--border);background:var(--black)}
+.modal-tab{padding:10px 16px;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:.15s;background:transparent;border-left:none;border-right:none;border-top:none;font-family:'Barlow',sans-serif}
+.modal-tab:hover{color:var(--white)}
+.modal-tab.active{color:var(--lime);border-bottom-color:var(--lime)}
+.modal-body{padding:20px}
+.modal-section{display:none}
+.modal-section.active{display:block}
+.admin-group{margin-bottom:14px}
+.admin-group label{display:block;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.admin-group input,.admin-group select,.admin-group textarea{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:4px;padding:8px 10px;font-size:13px;color:var(--white);font-family:'Barlow',sans-serif;outline:none}
+.admin-group input:focus,.admin-group select:focus{border-color:var(--lime)}
+.admin-group select option{background:#222}
+.admin-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.admin-btn-primary{background:var(--lime);color:var(--black);border:none;border-radius:4px;padding:9px 18px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:0.06em;cursor:pointer}
+.admin-btn-primary:hover{background:var(--lime-dark)}
+.admin-btn-secondary{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:4px;padding:9px 18px;font-family:'Barlow',sans-serif;font-size:13px;cursor:pointer}
+.admin-btn-secondary:hover{border-color:var(--white);color:var(--white)}
+.admin-save-row{display:flex;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);flex-wrap:wrap}
+.status-pill{display:inline-block;font-size:11px;padding:3px 8px;border-radius:3px;letter-spacing:0.05em;text-transform:uppercase;margin-left:8px}
+.pill-ok{background:rgba(200,230,50,0.15);color:var(--lime);border:1px solid rgba(200,230,50,0.3)}
+.pill-err{background:rgba(229,57,53,0.15);color:var(--red);border:1px solid rgba(229,57,53,0.3)}
+.pill-wait{background:rgba(255,255,255,0.08);color:var(--muted);border:1px solid var(--border)}
+.loc-row{border:1px solid var(--border);border-radius:4px;margin-bottom:8px;overflow:hidden}
+.loc-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;cursor:pointer;background:rgba(255,255,255,0.03)}
+.loc-header:hover{background:rgba(255,255,255,0.06)}
+.loc-toggle-wrap{display:flex;align-items:center;gap:10px}
+.loc-name-text{font-size:13px;font-weight:500}
+.loc-city{font-size:11px;color:var(--muted)}
+.toggle-switch{width:36px;height:20px;background:rgba(255,255,255,0.1);border-radius:10px;position:relative;cursor:pointer;flex-shrink:0;transition:background .2s}
+.toggle-switch.on{background:var(--lime)}
+.toggle-switch::after{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:white;transition:transform .2s}
+.toggle-switch.on::after{transform:translateX(16px)}
+.loc-config{display:none;padding:14px;border-top:1px solid var(--border);background:rgba(0,0,0,0.2)}
+.loc-config.open{display:block}
+.day-block{background:rgba(255,255,255,0.03);border-radius:4px;padding:12px;margin-bottom:10px}
+.day-block-title{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--lime);margin-bottom:10px}
+.pro-entry{display:grid;grid-template-columns:1fr 100px 100px 28px;gap:8px;align-items:center;margin-bottom:8px}
+.pro-entry input{background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:4px;padding:6px 8px;font-size:12px;color:var(--white);font-family:'Barlow',sans-serif;outline:none;width:100%}
+.pro-entry input:focus{border-color:var(--lime)}
+.remove-pro{background:transparent;border:none;color:rgba(255,255,255,0.3);cursor:pointer;font-size:16px;line-height:1;padding:0;text-align:center}
+.remove-pro:hover{color:var(--red)}
+.add-pro-btn{font-size:12px;color:var(--lime);background:transparent;border:1px dashed rgba(200,230,50,0.3);border-radius:4px;padding:5px 10px;cursor:pointer;margin-top:4px;font-family:'Barlow',sans-serif}
+.add-pro-btn:hover{border-color:var(--lime)}
+.bookings-filters{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.bookings-filters select,.bookings-filters input{background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:4px;padding:7px 10px;font-size:13px;color:var(--white);font-family:'Barlow',sans-serif;outline:none}
+.bookings-filters select:focus,.bookings-filters input:focus{border-color:var(--lime)}
+.bookings-filters select option{background:#222}
+.bookings-filters input{flex:1;min-width:160px}
+.bookings-count{font-size:12px;color:var(--muted);margin-bottom:10px}
+.booking-row{border:1px solid var(--border);border-radius:4px;padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:.15s}
+.booking-row:hover{border-color:rgba(200,230,50,0.3);background:rgba(200,230,50,0.03)}
+.booking-row-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.booking-name{font-size:14px;font-weight:500}
+.booking-status-badge{font-size:11px;padding:2px 8px;border-radius:3px;letter-spacing:0.05em;text-transform:uppercase}
+.badge-confirmed{background:rgba(200,230,50,0.12);color:var(--lime);border:1px solid rgba(200,230,50,0.25)}
+.badge-cancelled{background:rgba(229,57,53,0.12);color:var(--red);border:1px solid rgba(229,57,53,0.25)}
+.badge-rescheduled{background:rgba(100,160,255,0.12);color:#64a0ff;border:1px solid rgba(100,160,255,0.25)}
+.booking-row-sub{font-size:12px;color:var(--muted)}
+.booking-detail-panel{background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:6px;padding:16px;margin-top:8px;display:none}
+.booking-detail-panel.open{display:block}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.detail-item{font-size:13px}
+.detail-label{font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.detail-value{color:var(--white)}
+.detail-actions{display:flex;gap:8px;padding-top:12px;border-top:1px solid var(--border)}
+.no-bookings{text-align:center;padding:32px;color:var(--muted);font-size:14px}
+.manage-wrap{max-width:520px;margin:40px auto;padding:0 24px}
+.manage-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:28px}
+.passcode-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:2000;align-items:center;justify-content:center}
+.passcode-overlay.open{display:flex}
+.passcode-box{background:#1e1e1e;border:1px solid var(--border);border-radius:8px;padding:32px;width:320px;text-align:center}
+.passcode-box h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;text-transform:uppercase;margin-bottom:8px;letter-spacing:0.05em}
+.passcode-box p{font-size:13px;color:var(--muted);margin-bottom:20px}
+.passcode-box input{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:4px;padding:10px 12px;font-size:15px;color:var(--white);font-family:'Barlow',sans-serif;outline:none;text-align:center;letter-spacing:0.15em;margin-bottom:10px}
+.passcode-box input:focus{border-color:var(--lime)}
+.passcode-error{font-size:12px;color:var(--red);margin-bottom:10px;display:none}
+.passcode-row{display:flex;gap:8px}
+.passcode-row .admin-btn-primary{flex:1}
+.q-row{border:1px solid var(--border);border-radius:4px;padding:12px;margin-bottom:8px}
+.q-row-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.q-label-input{flex:1;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:4px;padding:6px 8px;font-size:13px;color:var(--white);font-family:'Barlow',sans-serif;outline:none;margin-right:8px}
+.q-label-input:focus{border-color:var(--lime)}
+.q-type-badge{font-size:11px;padding:2px 8px;border-radius:3px;background:rgba(200,230,50,0.1);color:var(--lime);border:1px solid rgba(200,230,50,0.2);white-space:nowrap}
+.q-locked-badge{font-size:11px;padding:2px 8px;border-radius:3px;background:rgba(255,255,255,0.06);color:var(--muted);border:1px solid var(--border)}
+.q-delete-btn{background:transparent;border:none;color:rgba(255,255,255,0.25);cursor:pointer;font-size:18px;padding:0 0 0 8px}
+.q-delete-btn:hover{color:var(--red)}
+.q-options-textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:4px;padding:6px 8px;font-size:12px;color:var(--muted);font-family:'Barlow',sans-serif;resize:vertical;min-height:60px;outline:none;margin-top:6px}
+.q-options-textarea:focus{border-color:var(--lime)}
+.add-q-btn{width:100%;background:transparent;border:1px dashed rgba(200,230,50,0.25);border-radius:4px;padding:10px;color:var(--lime);font-family:'Barlow',sans-serif;font-size:13px;cursor:pointer;margin-top:4px}
+.add-q-btn:hover{border-color:var(--lime);background:rgba(200,230,50,0.03)}
+.q-req-row{display:flex;align-items:center;gap:6px;margin-top:6px}
+.q-req-row input[type=checkbox]{accent-color:var(--lime)}
+.q-req-row label{font-size:12px;color:var(--muted)}
+.hidden{display:none!important}
+.info-banner{background:rgba(200,230,50,0.06);border:1px solid rgba(200,230,50,0.2);border-radius:4px;padding:10px 14px;font-size:13px;color:var(--muted);margin-bottom:14px}
+.warning-banner{background:rgba(229,57,53,0.08);border:1px solid rgba(229,57,53,0.25);border-radius:4px;padding:10px 14px;font-size:13px;color:#ff6b6b;margin-bottom:14px}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}.admin-row{grid-template-columns:1fr}.day-tabs{flex-direction:column}.detail-grid{grid-template-columns:1fr}.pro-entry{grid-template-columns:1fr 80px 80px 28px}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-logo">
+    <div class="logo-mark">5i</div>
+    <div><div class="topbar-title">Callaway Tour Fitting</div><div class="topbar-sub">by Five Iron Golf</div></div>
+  </div>
+  <button class="admin-btn" onclick="promptAdminPass()">&#9881; Admin</button>
+</div>
+<div class="hero">
+  <div class="hero-eyebrow">Free Fitting Day &middot; August 8&ndash;9, 2026</div>
+  <h1>Book Your <span>Free Fitting</span></h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">A tour-level fitting experience with custom Callaway equipment &mdash; tailored perfectly to your swing. No purchase necessary.</p>
+</div>
+<div class="steps-wrap">
+  <div class="steps" id="stepsBar">
+    <div class="step-item active" id="step-ind-1"><div class="step-num">1</div><div class="step-label">Your Info</div></div>
+    <div class="step-connector"></div>
+    <div class="step-item" id="step-ind-2"><div class="step-num">2</div><div class="step-label">Pick a Time</div></div>
+    <div class="step-connector"></div>
+    <div class="step-item" id="step-ind-3"><div class="step-num">3</div><div class="step-label">Confirm</div></div>
+  </div>
+</div>
+<div class="main">
+  <div id="stepIntake">
+    <div class="card">
+      <div class="card-title">Book Your Fitting</div>
+      <div id="intakeFieldsContainer"></div>
+      <div class="consent-box">
+        <input type="checkbox" id="consentCheck">
+        <label for="consentCheck">I understand this is a complimentary fitting session as part of Free Fitting Day, and availability is limited. <span class="req">*</span></label>
+      </div>
+      <div class="btn-row" style="margin-top:20px"><button class="btn-primary" onclick="submitIntake()">Select a Time &rarr;</button></div>
+    </div>
+  </div>
+  <div id="stepSlots" class="hidden">
+    <div class="card">
+      <div class="card-title" id="slotsCardTitle">Available Times</div>
+      <div id="locationInfoBar" class="info-banner hidden"></div>
+      <div id="dayTabsContainer"></div>
+      <div id="slotsContainer"></div>
+      <div class="btn-row"><button class="btn-secondary" onclick="goToStep(1)">&larr; Back</button></div>
+    </div>
+  </div>
+  <div id="stepReview" class="hidden">
+    <div class="card">
+      <div class="card-title">Review Your Booking</div>
+      <div class="booking-highlight" id="reviewHighlight"></div>
+      <table class="summary-table" id="reviewTable"></table>
+      <div class="btn-row" style="margin-top:20px">
+        <button class="btn-secondary" onclick="goToStep(2)">&larr; Back</button>
+        <button class="btn-primary" onclick="confirmBooking()">Confirm Booking</button>
+      </div>
+    </div>
+  </div>
+  <div id="stepSuccess" class="hidden">
+    <div class="card" style="text-align:center;padding:40px 24px">
+      <div class="success-icon">&#10003;</div>
+      <div class="success-title">You're Booked!</div>
+      <p class="success-sub">A confirmation email has been sent to your email address.</p>
+      <div id="successDetails"></div>
+      <button class="btn-secondary" style="margin-top:20px" onclick="startOver()">Book Another Slot</button>
+    </div>
+  </div>
+  <div id="stepManage" class="hidden">
+    <div class="manage-wrap"><div class="manage-card" id="manageCardContent"></div></div>
+  </div>
+</div>
+<div class="passcode-overlay" id="passcodeOverlay">
+  <div class="passcode-box">
+    <div class="logo-mark" style="margin:0 auto 16px;width:40px;height:40px;font-size:18px">5i</div>
+    <h3>Admin Access</h3>
+    <p>Enter your access code to continue</p>
+    <input type="password" id="passcodeInput" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" onkeydown="if(event.key==='Enter')checkPasscode()">
+    <div class="passcode-error" id="passcodeError">Incorrect code. Try again.</div>
+    <div class="passcode-row">
+      <button class="admin-btn-secondary" onclick="closePasscode()">Cancel</button>
+      <button class="admin-btn-primary" onclick="checkPasscode()">Enter</button>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="adminOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-logo">5i</div>
+        <div class="modal-title">Admin Panel</div>
+        <span class="modal-badge" id="adminBadge">Full Access</span>
+      </div>
+      <button class="modal-close" onclick="closeAdmin()">&times;</button>
+    </div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" onclick="switchTab('tabEmail')" id="tab-tabEmail" data-admin-only="true">Email Settings</button>
+      <button class="modal-tab" onclick="switchTab('tabSheets')" id="tab-tabSheets" data-admin-only="true">Google Sheets</button>
+      <button class="modal-tab" onclick="switchTab('tabQuestions')" id="tab-tabQuestions" data-admin-only="true">Form Questions</button>
+      <button class="modal-tab" onclick="switchTab('tabLocations')" id="tab-tabLocations" data-admin-only="true">Locations</button>
+      <button class="modal-tab" onclick="switchTab('tabBookings')" id="tab-tabBookings">Bookings</button>
+      <button class="modal-tab" onclick="switchTab('tabSettings')" id="tab-tabSettings" data-admin-only="true">Settings</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section active" id="tabEmail">
+        <div class="info-banner">Emails send via Gmail from <strong>fittings@fiveirongolf.com</strong>. Update the fields below if any details change.</div>
+        <div class="admin-group"><label>From Email</label><input type="email" id="cfgFromEmail" placeholder="fittings@fiveirongolf.com"></div>
+        <div class="admin-group"><label>From Name</label><input type="text" id="cfgFromName" placeholder="Five Iron Golf &mdash; Free Fitting Day"></div>
+        <div class="admin-group"><label>Base URL (where this page is hosted)</label><input type="text" id="cfgBaseUrl" placeholder="https://austinraup.github.io/Fitting-Day-August-2026"></div>
+        <div class="admin-save-row"><button class="admin-btn-primary" onclick="saveEmailSettings()">Save Settings</button><span id="emailSaveStatus"></span></div>
+      </div>
+      <div class="modal-section" id="tabSheets">
+        <div class="info-banner">Paste your deployed Apps Script URL. All bookings write to your Google Sheet automatically.</div>
+        <div class="admin-group"><label>Apps Script Web App URL</label><input type="text" id="cfgScriptUrl" placeholder="https://script.google.com/macros/s/AKfycb.../exec"></div>
+        <div class="admin-save-row">
+          <button class="admin-btn-primary" onclick="saveScriptUrl()">Save Settings</button>
+          <button class="admin-btn-secondary" onclick="testScriptConnection()">Test Connection</button>
+          <span id="sheetSaveStatus"></span>
+        </div>
+      </div>
+      <div class="modal-section" id="tabQuestions">
+        <div id="questionsEditor"></div>
+        <button class="add-q-btn" onclick="addQuestion()">+ Add Question</button>
+        <div class="admin-save-row"><button class="admin-btn-primary" onclick="saveQuestions()">Save Questions</button><span id="questionsSaveStatus"></span></div>
+      </div>
+      <div class="modal-section" id="tabLocations">
+        <div class="info-banner">Toggle locations on/off and configure dates, hours, and pros per location.</div>
+        <div id="locationsEditor"></div>
+        <div class="admin-save-row">
+          <button class="admin-btn-primary" onclick="saveLocations()">Save Settings</button>
+          <button style="background:transparent;border:1px solid var(--lime);color:var(--lime);font-family:'Barlow',sans-serif;font-size:13px;padding:8px 16px;border-radius:4px;cursor:pointer;letter-spacing:0.05em;text-transform:uppercase" onclick="syncToSheet()">Sync to Sheet</button>
+          <span id="locationsSaveStatus"></span>
+        </div>
+        <div id="syncStatus" style="margin-top:8px;font-size:12px;color:var(--muted)"></div>
+      </div>
+      <div class="modal-section" id="tabBookings">
+        <div class="bookings-filters">
+          <select id="filterLocation" onchange="buildBookingsTable()"><option value="">All locations</option></select>
+          <select id="filterStatus" onchange="buildBookingsTable()">
+            <option value="active">Active bookings</option><option value="all">All bookings</option>
+            <option value="confirmed">Confirmed only</option><option value="cancelled">Cancelled only</option>
+            <option value="rescheduled">Rescheduled only</option>
+          </select>
+          <input type="text" id="filterSearch" placeholder="Search name, email, ID&hellip;" oninput="buildBookingsTable()">
+        </div>
+        <div class="bookings-count" id="bookingsCount"></div>
+        <div id="bookingsTableContainer"></div>
+      </div>
+      <div class="modal-section" id="tabSettings">
+        <div class="admin-row">
+          <div class="admin-group"><label>Event Name</label><input type="text" id="cfgEventName" placeholder="Free Fitting Day &mdash; August 2026"></div>
+          <div class="admin-group"><label>Appointment Duration</label>
+            <select id="cfgDuration"><option value="30">30 minutes</option><option value="45">45 minutes</option><option value="60" selected>60 minutes</option><option value="90">90 minutes</option></select>
+          </div>
+        </div>
+        <div class="admin-group"><label>Promo Tagline</label><input type="text" id="cfgTagline" placeholder="Complimentary club fitting &mdash; no purchase necessary"></div>
+        <div class="admin-save-row">
+          <button class="admin-btn-primary" onclick="saveSettings()">Save Settings</button>
+          <button class="admin-btn-secondary" onclick="clearBookings()">Clear All Bookings</button>
+          <span id="settingsSaveStatus"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><script>
+var ADMIN_PASS='CTF2026',COACH_PASS='coach2026',currentAdminLevel=null;
+var ALL_LOCATIONS=[
+  {id:'atlanta-midtown',name:'Atlanta \u2014 Midtown',city:'Atlanta, GA',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'baltimore-harbor-east',name:'Baltimore \u2014 Harbor East',city:'Baltimore, MD',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'boston-government-center',name:'Boston \u2014 Government Center',city:'Boston, MA',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'boston-seaport',name:'Boston \u2014 Seaport',city:'Boston, MA',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'chicago-bucktown',name:'Chicago \u2014 Bucktown',city:'Chicago, IL',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'chicago-lincoln-park',name:'Chicago \u2014 Lincoln Park',city:'Chicago, IL',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'chicago-river-north',name:'Chicago \u2014 River North',city:'Chicago, IL',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'chicago-the-loop',name:'Chicago \u2014 The Loop',city:'Chicago, IL',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'cincinnati-downtown',name:'Cincinnati \u2014 Downtown',city:'Cincinnati, OH',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'cleveland-downtown',name:'Cleveland \u2014 Downtown',city:'Cleveland, OH',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'cleveland-shaker-heights',name:'Cleveland \u2014 Shaker Heights',city:'Cleveland, OH',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'dallas-fort-worth-near-southside',name:'Dallas\u2013Fort Worth \u2014 Near Southside',city:'Fort Worth, TX',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'dc-penn-quarter',name:'DC \u2014 Penn Quarter',city:'Washington, DC',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'detroit-downtown',name:'Detroit \u2014 Downtown',city:'Detroit, MI',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'detroit-shelby-township',name:'Detroit \u2014 Shelby Township',city:'Shelby Township, MI',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'erie-downtown',name:'Erie \u2014 Downtown',city:'Erie, PA',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'indianapolis-downtown',name:'Indianapolis \u2014 Downtown',city:'Indianapolis, IN',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'las-vegas-area15',name:'Las Vegas \u2014 AREA15',city:'Las Vegas, NV',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'louisville-downtown',name:'Louisville \u2014 Downtown',city:'Louisville, KY',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'louisville-nulu',name:'Louisville \u2014 NuLu',city:'Louisville, KY',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'miami-coral-gables',name:'Miami \u2014 Coral Gables',city:'Coral Gables, FL',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'minneapolis-north-loop',name:'Minneapolis \u2014 North Loop',city:'Minneapolis, MN',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'nashville-midtown',name:'Nashville \u2014 Midtown',city:'Nashville, TN',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'nyc-fidi',name:'NYC \u2014 FiDi',city:'New York, NY',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'nyc-flatiron',name:'NYC \u2014 Flatiron',city:'New York, NY',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'nyc-grand-central',name:'NYC \u2014 Grand Central',city:'New York, NY',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'nyc-herald-square',name:'NYC \u2014 Herald Square',city:'New York, NY',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'nyc-long-island-city',name:'NYC \u2014 Long Island City',city:'Long Island City, NY',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'nyc-rockefeller-center',name:'NYC \u2014 Rockefeller Center',city:'New York, NY',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'nyc-upper-east-side',name:'NYC \u2014 Upper East Side',city:'New York, NY',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'oklahoma-city-yukon',name:'Oklahoma City \u2014 Yukon',city:'Yukon, OK',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'philadelphia-fishtown',name:'Philadelphia \u2014 Fishtown',city:'Philadelphia, PA',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'philadelphia-logan-square',name:'Philadelphia \u2014 Logan Square',city:'Philadelphia, PA',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'philadelphia-rittenhouse',name:'Philadelphia \u2014 Rittenhouse',city:'Philadelphia, PA',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'pittsburgh-market-square',name:'Pittsburgh \u2014 Market Square',city:'Pittsburgh, PA',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'port-chester-main-street',name:'Port Chester \u2014 Main Street',city:'Port Chester, NY',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'seattle-capitol-hill',name:'Seattle \u2014 Capitol Hill',city:'Seattle, WA',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'seattle-kirkland',name:'Seattle \u2014 Kirkland',city:'Kirkland, WA',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'st-louis-clayton',name:'St. Louis \u2014 Clayton',city:'Clayton, MO',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]},
+  {id:'syracuse-downtown',name:'Syracuse \u2014 Downtown',city:'Syracuse, NY',active:true,days:[{date:'August 8, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]},{date:'August 9, 2026',pros:[{name:'',start:'8:00 AM',end:'1:00 PM'}]}]}
+];
+var DEFAULT_QUESTIONS=[
+  {id:'name',label:'Name',type:'text',placeholder:'First Last',required:true,locked:true},
+  {id:'email',label:'Email',type:'email',placeholder:'you@example.com',required:true,locked:true},
+  {id:'phone',label:'Phone Number',type:'tel',placeholder:'(555) 000-0000',required:true,locked:true},
+  {id:'location',label:'Location',type:'location',required:true,locked:true},
+  {id:'clubType',label:'What type of club would you like to be fit for?',type:'select',required:true,locked:true,options:['Driver','Fairway Woods / Hybrids','Irons','Wedges','Putter']},
+  {id:'currentClubs',label:'Tell us about your current clubs (brand/model, shaft, or anything you know)',type:'textarea',placeholder:'e.g. Titleist T300 irons, Callaway Rogue driver\u2026',required:true,locked:false},
+  {id:'referral',label:'Did someone on our team recommend or refer you? If so, please enter their name.',type:'text',placeholder:'Optional',required:false,locked:false},
+  {id:'handicap',label:'What is your current handicap?',type:'select',required:false,locked:false,options:['Scratch or better','1-5','6-10','11-15','16-20','21+','I don\'t keep a handicap']}
+];
+var bookingState={intakeData:{},selectedLocation:null,selectedDay:null,selectedSlot:null,selectedSlotLabel:null,selectedPro:null,selectedProIdx:null};
+function getLocations(){var s=localStorage.getItem('fi_locations');return s?JSON.parse(s):JSON.parse(JSON.stringify(ALL_LOCATIONS));}
+function getQuestions(){var s=localStorage.getItem('fi_questions');return s?JSON.parse(s):JSON.parse(JSON.stringify(DEFAULT_QUESTIONS));}
+function getSettings(){var s=localStorage.getItem('fi_settings');return s?JSON.parse(s):{eventName:'Free Fitting Day',duration:60,tagline:'Complimentary club fitting \u2014 no purchase necessary'};}
+function getBookings(){var s=localStorage.getItem('fi_bookings');return s?JSON.parse(s):{};}
+function saveBookingsStore(b){localStorage.setItem('fi_bookings',JSON.stringify(b));}
+function getConfig(){var s=localStorage.getItem('fi_config');return s?JSON.parse(s):{scriptUrl:'',fromEmail:'fittings@fiveirongolf.com',fromName:'Five Iron Golf \u2014 Free Fitting Day',baseUrl:''};}
+function saveConfig(c){localStorage.setItem('fi_config',JSON.stringify(c));}
+function parseTime(t){var p=t.match(/(\d+):(\d+)\s*(AM|PM)/i);if(!p)return 0;var h=parseInt(p[1]),m=parseInt(p[2]),ap=p[3].toUpperCase();if(ap==='PM'&&h!==12)h+=12;if(ap==='AM'&&h===12)h=0;return h*60+m;}
+function formatTime(mins){var h=Math.floor(mins/60),m=mins%60,ap=h>=12?'PM':'AM';if(h>12)h-=12;if(h===0)h=12;return h+':'+(m<10?'0':'')+m+' '+ap;}
+function genSlots(s,e,dur){var start=parseTime(s),end=parseTime(e),slots=[],cur=start;while(cur+dur<=end){var se=cur+dur;slots.push({start:formatTime(cur),end:formatTime(se),label:formatTime(cur)+' \u2013 '+formatTime(se)});cur=se;}return slots;}
+function getActiveDays(loc){var dur=parseInt(getSettings().duration)||60,days=[];(loc.days||[]).forEach(function(d){if(d.date&&d.date.trim()){var blocks=[];(d.pros||[]).forEach(function(p,pi){var s=genSlots(p.start||'8:00 AM',p.end||'1:00 PM',dur);if(s.length)blocks.push({pro:p.name||'',proIdx:pi,slots:s});});days.push({date:d.date,proBlocks:blocks});}});return days;}
+function renderIntakeForm(){
+  var qs=getQuestions(),locs=getLocations().filter(function(l){return l.active;}),html='';
+  qs.forEach(function(q,i){
+    var full=(q.type==='textarea'||q.type==='location'||q.type==='select');
+    if(i===0||full||qs[i-1].type==='textarea'||qs[i-1].type==='location'||qs[i-1].type==='select'){if(i>0)html+='</div>';html+='<div class="form-row '+(full?'full':'')+'">';}
+    var req=q.required?'<span class="req"> *</span>':'';
+    html+='<div class="form-group"><label>'+q.label+req+'</label>';
+    if(q.type==='location'){html+='<select id="field_'+q.id+'"><option value="">Select a location\u2026</option>';locs.forEach(function(l){html+='<option value="'+l.id+'">'+l.name+' \u2014 '+l.city+'</option>';});html+='</select>';}
+    else if(q.type==='select'){html+='<select id="field_'+q.id+'"><option value="">Select\u2026</option>';(q.options||[]).forEach(function(o){html+='<option value="'+o+'">'+o+'</option>';});html+='</select>';}
+    else if(q.type==='textarea'){html+='<textarea id="field_'+q.id+'" placeholder="'+(q.placeholder||'')+'"></textarea>';}
+    else{html+='<input type="'+(q.type||'text')+'" id="field_'+q.id+'" placeholder="'+(q.placeholder||'')+'">';}
+    html+='</div>';
+  });
+  html+='</div>';
+  document.getElementById('intakeFieldsContainer').innerHTML=html;
+}
+function submitIntake(){
+  var qs=getQuestions(),data={},errors=[];
+  qs.forEach(function(q){var el=document.getElementById('field_'+q.id);if(!el)return;var val=el.value.trim();if(q.required&&!val)errors.push(q.label);data[q.id]=val;});
+  if(!document.getElementById('consentCheck').checked)errors.push('Consent checkbox');
+  if(errors.length){alert('Please fill in: '+errors.join(', '));return;}
+  bookingState.intakeData=data;
+  var loc=getLocations().find(function(l){return l.id===data.location&&l.active;});
+  if(!loc){alert('Please select a valid location.');return;}
+  bookingState.selectedLocation=loc;goToStep(2);
+}
+var currentDayIdx=0;
+function renderSlots(){
+  var loc=bookingState.selectedLocation;if(!loc)return;
+  var days=getActiveDays(loc);
+  if(!days.length){document.getElementById('slotsContainer').innerHTML='<div class="warning-banner">No time slots available for this location.</div>';return;}
+  document.getElementById('slotsCardTitle').textContent=loc.name+' \u2014 Available Times';
+  var tabs='';
+  if(days.length>1){tabs='<div class="day-tabs" id="dayTabs">';days.forEach(function(d,i){var pros=d.proBlocks.map(function(b){return b.pro;}).filter(Boolean).join(', ');tabs+='<div class="day-tab'+(i===0?' active':'')+'" onclick="switchDay('+i+')" id="dayTab'+i+'"><div class="day-tab-date">'+d.date+'</div><div class="day-tab-pro">'+(pros||'')+'</div></div>';});tabs+='</div>';}
+  document.getElementById('dayTabsContainer').innerHTML=tabs;
+  currentDayIdx=0;renderDaySlots(days,0);
+}
+function switchDay(idx){currentDayIdx=idx;document.querySelectorAll('.day-tab').forEach(function(t,i){t.classList.toggle('active',i===idx);});renderDaySlots(getActiveDays(bookingState.selectedLocation),idx);}
+function renderDaySlots(days,idx){
+  var day=days[idx],bookings=getBookings(),html='';
+  day.proBlocks.forEach(function(block){
+    if(day.proBlocks.length>1)html+='<div class="pro-section"><div class="pro-label">'+(block.pro||'Pro')+'</div>';
+    html+='<div class="slots-grid">';
+    block.slots.forEach(function(slot){var key=bookingState.selectedLocation.id+'|'+day.date+'|'+slot.start+'|'+block.proIdx;var taken=bookings[key]&&bookings[key].status!=='cancelled';html+='<div class="slot-btn'+(taken?' taken':'')+'" onclick="'+(taken?'':'pickSlot(this,\''+slot.start+'\',\''+slot.label+'\',\''+block.pro+'\','+block.proIdx+',\''+day.date+'\')')+'">';html+='<div class="slot-time">'+slot.label+'</div><div class="slot-status">'+(taken?'Taken':'Available')+'</div></div>';});
+    html+='</div>';if(day.proBlocks.length>1)html+='</div>';
+  });
+  document.getElementById('slotsContainer').innerHTML=html;
+}
+function pickSlot(el,start,label,pro,proIdx,date){document.querySelectorAll('.slot-btn').forEach(function(b){b.classList.remove('active');});el.classList.add('active');bookingState.selectedSlot=start;bookingState.selectedSlotLabel=label;bookingState.selectedPro=pro;bookingState.selectedProIdx=proIdx;bookingState.selectedDay=date;setTimeout(function(){goToStep(3);},200);}
+function renderReview(){
+  var loc=bookingState.selectedLocation;
+  document.getElementById('reviewHighlight').innerHTML='<div class="booking-highlight-row">\ud83d\udccd <span>'+loc.name+'</span></div><div class="booking-highlight-row">\ud83d\udcc5 <span>'+bookingState.selectedDay+'</span></div><div class="booking-highlight-row">\ud83d\udd50 <span>'+bookingState.selectedSlotLabel+'</span></div>'+(bookingState.selectedPro?'<div class="booking-highlight-row">\ud83d\udc64 <span>'+bookingState.selectedPro+'</span></div>':'');
+  var rows='';getQuestions().forEach(function(q){var val=bookingState.intakeData[q.id];if(val&&q.id!=='location')rows+='<tr><td>'+q.label.substring(0,40)+(q.label.length>40?'\u2026':'')+'</td><td>'+val+'</td></tr>';});
+  document.getElementById('reviewTable').innerHTML=rows;
+}
+function generateToken(){return Math.random().toString(36).substr(2,9).toUpperCase()+Date.now().toString(36).toUpperCase();}
+function confirmBooking(){
+  var token=generateToken(),bookingId='FI-'+token,loc=bookingState.selectedLocation,data=bookingState.intakeData,cfg=getConfig();
+  var booking={token:token,bookingId:bookingId,status:'confirmed',name:data.name,email:data.email,phone:data.phone||'',locId:loc.id,locName:loc.name,date:bookingState.selectedDay,slot:bookingState.selectedSlot,slotLabel:bookingState.selectedSlotLabel,pro:bookingState.selectedPro||'',proIdx:bookingState.selectedProIdx,clubType:data.clubType||'',currentClubs:data.currentClubs||'',referral:data.referral||'',handicap:data.handicap||'',bookedAt:new Date().toISOString()};
+  var bookings=getBookings(),key=loc.id+'|'+bookingState.selectedDay+'|'+bookingState.selectedSlot+'|'+bookingState.selectedProIdx;
+  bookings[key]=booking;saveBookingsStore(bookings);
+  if(cfg.scriptUrl)callScript({action:'bookSlot',booking:booking});
+  if(cfg.scriptUrl)callScript({action:'sendEmail',emailType:'confirmation',booking:booking,baseUrl:cfg.baseUrl||window.location.href.split('?')[0]});
+  var sd='<div class="success-detail"><div class="label">Location</div><div class="value">'+loc.name+'</div></div><div class="success-detail"><div class="label">Date &amp; Time</div><div class="value">'+bookingState.selectedDay+' &middot; '+bookingState.selectedSlotLabel+'</div></div>';
+  if(bookingState.selectedPro)sd+='<div class="success-detail"><div class="label">Your Pro</div><div class="value">'+bookingState.selectedPro+'</div></div>';
+  document.getElementById('successDetails').innerHTML=sd;goToStep(4);
+}
+function startOver(){bookingState={intakeData:{},selectedLocation:null,selectedDay:null,selectedSlot:null,selectedSlotLabel:null,selectedPro:null,selectedProIdx:null};renderIntakeForm();goToStep(1);}
+function goToStep(n){
+  ['stepIntake','stepSlots','stepReview','stepSuccess','stepManage'].forEach(function(id,i){document.getElementById(id).classList.toggle('hidden',i+1!==n);});
+  document.getElementById('stepsBar').classList.toggle('hidden',n===4||n===5);
+  ['step-ind-1','step-ind-2','step-ind-3'].forEach(function(id,i){var el=document.getElementById(id);el.classList.remove('active','done');if(i+1===n)el.classList.add('active');else if(i+1<n)el.classList.add('done');});
+  if(n===2)renderSlots();if(n===3)renderReview();window.scrollTo({top:0,behavior:'smooth'});
+}
+function loadManageBooking(token){
+  var bookings=getBookings(),booking=null;Object.keys(bookings).forEach(function(k){if(bookings[k].token===token)booking=bookings[k];});
+  var el=document.getElementById('manageCardContent');
+  if(!booking){el.innerHTML='<div class="warning-banner">Booking not found.</div><button class="btn-secondary" onclick="goToStep(1)">Book a New Slot</button>';goToStep(5);return;}
+  if(booking.status==='cancelled'){el.innerHTML='<h2 style="font-family:\'Barlow Condensed\',sans-serif;margin-bottom:12px">Booking Cancelled</h2><p style="color:var(--muted);margin-bottom:20px">This booking has already been cancelled.</p><button class="btn-primary" onclick="goToStep(1)">Book a New Slot</button>';goToStep(5);return;}
+  el.innerHTML='<h2 style="font-family:\'Barlow Condensed\',sans-serif;font-size:24px;margin-bottom:4px">Manage Booking</h2><p style="color:var(--muted);font-size:13px;margin-bottom:20px">ID: '+booking.bookingId+'</p><div class="success-detail" style="margin-bottom:8px"><div class="label">Name</div><div class="value">'+booking.name+'</div></div><div class="success-detail" style="margin-bottom:8px"><div class="label">Location</div><div class="value">'+booking.locName+'</div></div><div class="success-detail" style="margin-bottom:8px"><div class="label">Date &amp; Time</div><div class="value">'+booking.date+' &middot; '+(booking.slotLabel||booking.slot)+'</div></div><div style="display:flex;gap:10px;margin-top:20px"><button class="btn-danger" onclick="customerCancel(\''+token+'\')">Cancel Booking</button><button class="btn-primary" onclick="showReschedule(\''+token+'\')" style="flex:1">Reschedule</button></div><div id="rsContainer" style="margin-top:16px"></div>';
+  goToStep(5);
+}
+function customerCancel(token){
+  if(!confirm('Are you sure you want to cancel this booking?'))return;
+  var bookings=getBookings(),cfg=getConfig();
+  Object.keys(bookings).forEach(function(k){if(bookings[k].token===token){var b=bookings[k];b.status='cancelled';if(cfg.scriptUrl)callScript({action:'cancelSlot',booking:b});if(cfg.scriptUrl)callScript({action:'sendEmail',emailType:'cancellation',booking:b,baseUrl:cfg.baseUrl||window.location.href.split('?')[0]});delete bookings[k];}});
+  saveBookingsStore(bookings);
+  document.getElementById('manageCardContent').innerHTML='<h2 style="font-family:\'Barlow Condensed\',sans-serif;margin-bottom:12px">Booking Cancelled</h2><p style="color:var(--muted);margin-bottom:20px">Your booking has been cancelled.</p><button class="btn-primary" onclick="goToStep(1)">Book a New Slot</button>';
+}
+function showReschedule(token){
+  var bookings=getBookings(),booking=null;Object.keys(bookings).forEach(function(k){if(bookings[k].token===token)booking=bookings[k];});if(!booking)return;
+  var loc=getLocations().find(function(l){return l.id===booking.locId;});if(!loc)return;
+  var days=getActiveDays(loc),html='<div class="card" style="margin-top:0"><div class="card-title" style="font-size:16px">Pick a New Time</div>';
+  if(days.length>1){html+='<div class="day-tabs" id="rsDayTabs">';days.forEach(function(d,i){html+='<div class="day-tab'+(i===0?' active':'')+'" onclick="switchRsDay(\''+token+'\','+i+')" id="rsDay'+i+'"><div class="day-tab-date">'+d.date+'</div></div>';});html+='</div>';}
+  html+='<div id="rsSlotsContainer">'+buildRsSlots(days[0],token,booking)+'</div></div>';
+  document.getElementById('rsContainer').innerHTML=html;
+}
+function switchRsDay(token,idx){
+  document.querySelectorAll('#rsDayTabs .day-tab').forEach(function(t,i){t.classList.toggle('active',i===idx);});
+  var bookings=getBookings(),booking=null;Object.keys(bookings).forEach(function(k){if(bookings[k].token===token)booking=bookings[k];});if(!booking)return;
+  var loc=getLocations().find(function(l){return l.id===booking.locId;});if(!loc)return;
+  document.getElementById('rsSlotsContainer').innerHTML=buildRsSlots(getActiveDays(loc)[idx],token,booking);
+}
+function buildRsSlots(day,token,booking){
+  var bookings=getBookings(),html='';
+  day.proBlocks.forEach(function(block){
+    if(day.proBlocks.length>1)html+='<div class="pro-section"><div class="pro-label">'+(block.pro||'Pro')+'</div>';
+    html+='<div class="slots-grid">';
+    block.slots.forEach(function(slot){var key=booking.locId+'|'+day.date+'|'+slot.start+'|'+block.proIdx,existingKey=booking.locId+'|'+booking.date+'|'+booking.slot+'|'+booking.proIdx,taken=bookings[key]&&bookings[key].status!=='cancelled'&&key!==existingKey;html+='<div class="slot-btn'+(taken?' taken':'')+'" onclick="'+(taken?'':'confirmReschedule(\''+token+'\',\''+day.date+'\',\''+slot.start+'\',\''+slot.label+'\',\''+block.pro+'\','+block.proIdx+')')+'"><div class="slot-time">'+slot.label+'</div><div class="slot-status">'+(taken?'Taken':(key===existingKey?'Current':'Available'))+'</div></div>';});
+    html+='</div>';if(day.proBlocks.length>1)html+='</div>';
+  });
+  return html;
+}
+function confirmReschedule(token,newDate,newSlot,newLabel,newPro,newProIdx){
+  var bookings=getBookings(),oldKey=null,booking=null;Object.keys(bookings).forEach(function(k){if(bookings[k].token===token){oldKey=k;booking=bookings[k];}});if(!booking)return;
+  var cfg=getConfig();delete bookings[oldKey];
+  booking.date=newDate;booking.slot=newSlot;booking.slotLabel=newLabel;booking.pro=newPro||'';booking.proIdx=newProIdx;booking.status='rescheduled';
+  var newKey=booking.locId+'|'+newDate+'|'+newSlot+'|'+newProIdx;bookings[newKey]=booking;saveBookingsStore(bookings);
+  if(cfg.scriptUrl)callScript({action:'rescheduleSlot',booking:booking});
+  if(cfg.scriptUrl)callScript({action:'sendEmail',emailType:'reschedule',booking:booking,baseUrl:cfg.baseUrl||window.location.href.split('?')[0]});
+  document.getElementById('manageCardContent').innerHTML='<h2 style="font-family:\'Barlow Condensed\',sans-serif;font-size:24px;margin-bottom:4px">Appointment Rescheduled</h2><p style="color:var(--muted);font-size:13px;margin-bottom:20px">A confirmation email has been sent to your inbox.</p><div class="success-detail" style="margin-bottom:8px"><div class="label">Location</div><div class="value">'+booking.locName+'</div></div><div class="success-detail" style="margin-bottom:8px"><div class="label">New Date</div><div class="value">'+newDate+'</div></div><div class="success-detail" style="margin-bottom:8px"><div class="label">New Time</div><div class="value">'+newLabel+'</div></div><div class="success-detail" style="margin-bottom:20px"><div class="label">Booking ID</div><div class="value">'+booking.bookingId+'</div></div><button class="btn-primary" onclick="goToStep(1)">Book Another Slot</button>';
+}
+function callScript(payload){var cfg=getConfig();if(!cfg.scriptUrl)return;fetch(cfg.scriptUrl,{method:'POST',body:JSON.stringify(payload),headers:{'Content-Type':'text/plain;charset=utf-8'}}).catch(function(e){console.warn('Script call failed:',e);});}
+function testScriptConnection(){var url=document.getElementById('cfgScriptUrl').value.trim(),el=document.getElementById('sheetSaveStatus');if(!url){el.innerHTML='<span class="status-pill pill-err">\u26a0 Enter a URL first</span>';return;}el.innerHTML='<span class="status-pill pill-wait">Testing\u2026</span>';fetch(url+'?action=ping',{method:'GET',redirect:'follow'}).then(function(r){return r.text();}).then(function(t){try{var res=JSON.parse(t);if(res&&res.ok){el.innerHTML='<span class="status-pill pill-ok">\u2713 Connected</span>';return;}}catch(e){}el.innerHTML='<span class="status-pill pill-err">\u26a0 Unexpected: '+t.substring(0,80)+'</span>';}).catch(function(){el.innerHTML='<span class="status-pill pill-err">\u26a0 Failed</span>';});}
+function saveScriptUrl(){var cfg=getConfig();cfg.scriptUrl=document.getElementById('cfgScriptUrl').value.trim();saveConfig(cfg);document.getElementById('sheetSaveStatus').innerHTML='<span class="status-pill pill-ok">\u2713 Saved</span>';}
+function saveEmailSettings(){var cfg=getConfig();cfg.fromEmail=document.getElementById('cfgFromEmail').value.trim();cfg.fromName=document.getElementById('cfgFromName').value.trim();cfg.baseUrl=document.getElementById('cfgBaseUrl').value.trim();saveConfig(cfg);document.getElementById('emailSaveStatus').innerHTML='<span class="status-pill pill-ok">\u2713 Saved</span>';}
+function loadEmailSettings(){var cfg=getConfig();document.getElementById('cfgFromEmail').value=cfg.fromEmail||'fittings@fiveirongolf.com';document.getElementById('cfgFromName').value=cfg.fromName||'Five Iron Golf \u2014 Free Fitting Day';document.getElementById('cfgBaseUrl').value=cfg.baseUrl||'';document.getElementById('cfgScriptUrl').value=cfg.scriptUrl||'';}
+function syncToSheet(){
+  var cfg=getConfig();if(!cfg.scriptUrl){document.getElementById('syncStatus').innerHTML='<span style="color:var(--red)">\u2717 No Apps Script URL saved.</span>';return;}
+  var locs=getLocations(),active=locs.filter(function(l){return l.active;});if(!active.length){document.getElementById('syncStatus').innerHTML='<span style="color:var(--red)">\u2717 No active locations.</span>';return;}
+  document.getElementById('syncStatus').innerHTML='Syncing '+active.length+' locations\u2026';
+  var done=0,errors=0,passcode=currentAdminLevel==='full'?'CTF2026':'coach2026';
+  active.forEach(function(loc){
+    var day1=loc.days&&loc.days[0],day2=loc.days&&loc.days[1];
+    var p1d1=day1&&day1.pros&&day1.pros[0]?day1.pros[0].name:'',p2d1=day1&&day1.pros&&day1.pros[1]?day1.pros[1].name:'';
+    var p1d2=day2&&day2.pros&&day2.pros[0]?day2.pros[0].name:'',p2d2=day2&&day2.pros&&day2.pros[1]?day2.pros[1].name:'';
+    var payload={action:'syncProConfig',passcode:passcode,locationId:loc.name,pro1Name:p1d1,pro2Name:p2d1,pro1Day2Name:p1d2,pro2Day2Name:p2d2,showPro2:!!(p2d1||p2d2),day1Date:day1?day1.date:'',day2Date:day2?day2.date:''};
+    fetch(cfg.scriptUrl,{method:'POST',body:JSON.stringify(payload),headers:{'Content-Type':'text/plain;charset=utf-8'}}).then(function(r){return r.json();}).then(function(res){done++;if(!res.ok)errors++;if(done===active.length){document.getElementById('syncStatus').innerHTML=errors===0?'<span style="color:var(--lime)">\u2713 Synced '+done+' locations successfully.</span>':'<span style="color:var(--red)">\u26a0 Synced with '+errors+' error(s).</span>';}}).catch(function(){done++;errors++;if(done===active.length)document.getElementById('syncStatus').innerHTML='<span style="color:var(--red)">\u2717 Sync failed.</span>';});
+  });
+}
+function renderLocationsEditor(){
+  var locs=getLocations(),html='';
+  locs.forEach(function(loc,li){
+    html+='<div class="loc-row"><div class="loc-header" onclick="toggleLocConfig('+li+')">';
+    html+='<div><div class="loc-name-text">'+loc.name+'</div><div class="loc-city">'+loc.city+'</div></div>';
+    html+='<div class="loc-toggle-wrap"><span style="font-size:11px;color:var(--muted);margin-right:6px">'+(loc.active?'Active':'Inactive')+'</span><div class="toggle-switch'+(loc.active?' on':'')+'" id="toggle_'+li+'" onclick="event.stopPropagation();toggleLoc('+li+')"></div></div></div>';
+    html+='<div class="loc-config" id="locConfig_'+li+'">';
+    (loc.days||[]).forEach(function(day,di){
+      html+='<div class="day-block"><div class="day-block-title">Day '+(di+1)+'</div>';
+      html+='<div class="admin-group"><label>Date</label><input type="text" id="loc_'+li+'_day_'+di+'_date" value="'+(day.date||'')+'" placeholder="August 8, 2026"></div>';
+      html+='<div style="display:grid;grid-template-columns:1fr 80px 80px 28px;gap:6px;margin-bottom:4px;font-size:11px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase"><span>Pro Name</span><span>Start</span><span>End</span><span></span></div>';
+      (day.pros||[{name:'',start:'8:00 AM',end:'1:00 PM'}]).forEach(function(pro,pi){html+='<div class="pro-entry"><input type="text" placeholder="Pro name" id="loc_'+li+'_day_'+di+'_pro_'+pi+'_name" value="'+(pro.name||'')+'"><input type="text" placeholder="8:00 AM" id="loc_'+li+'_day_'+di+'_pro_'+pi+'_start" value="'+(pro.start||'8:00 AM')+'"><input type="text" placeholder="1:00 PM" id="loc_'+li+'_day_'+di+'_pro_'+pi+'_end" value="'+(pro.end||'1:00 PM')+'"><button class="remove-pro" onclick="removePro('+li+','+di+','+pi+')" '+(pi===0?'style="visibility:hidden"':'')+'>&#215;</button></div>';});
+      html+='<button class="add-pro-btn" onclick="addPro('+li+','+di+')">+ Add another pro</button></div>';
+    });
+    html+='</div></div>';
+  });
+  document.getElementById('locationsEditor').innerHTML=html;
+}
+function toggleLocConfig(li){document.getElementById('locConfig_'+li).classList.toggle('open');}
+function toggleLoc(li){var locs=getLocations();locs[li].active=!locs[li].active;localStorage.setItem('fi_locations',JSON.stringify(locs));var t=document.getElementById('toggle_'+li);t.classList.toggle('on',locs[li].active);t.previousElementSibling.textContent=locs[li].active?'Active':'Inactive';}
+function addPro(li,di){var locs=getLocations();if(!locs[li].days[di].pros)locs[li].days[di].pros=[];locs[li].days[di].pros.push({name:'',start:'8:00 AM',end:'1:00 PM'});localStorage.setItem('fi_locations',JSON.stringify(locs));renderLocationsEditor();document.getElementById('locConfig_'+li).classList.add('open');}
+function removePro(li,di,pi){var locs=getLocations();locs[li].days[di].pros.splice(pi,1);localStorage.setItem('fi_locations',JSON.stringify(locs));renderLocationsEditor();document.getElementById('locConfig_'+li).classList.add('open');}
+function saveLocations(){
+  var locs=getLocations();
+  locs.forEach(function(loc,li){(loc.days||[]).forEach(function(day,di){var dateEl=document.getElementById('loc_'+li+'_day_'+di+'_date');if(dateEl)day.date=dateEl.value.trim();var pi=0;while(document.getElementById('loc_'+li+'_day_'+di+'_pro_'+pi+'_name')){if(!day.pros[pi])day.pros[pi]={};day.pros[pi].name=document.getElementById('loc_'+li+'_day_'+di+'_pro_'+pi+'_name').value.trim();day.pros[pi].start=document.getElementById('loc_'+li+'_day_'+di+'_pro_'+pi+'_start').value.trim();day.pros[pi].end=document.getElementById('loc_'+li+'_day_'+di+'_pro_'+pi+'_end').value.trim();pi++;}});});
+  localStorage.setItem('fi_locations',JSON.stringify(locs));document.getElementById('locationsSaveStatus').innerHTML='<span class="status-pill pill-ok">\u2713 Saved</span>';
+}
+function renderQuestionsEditor(){
+  var qs=getQuestions(),html='';
+  qs.forEach(function(q,i){html+='<div class="q-row"><div class="q-row-header"><input class="q-label-input" value="'+q.label+'" id="qlabel_'+i+'" placeholder="Question label">';if(q.locked)html+='<span class="q-locked-badge">Locked</span>';else html+='<span class="q-type-badge">'+q.type+'</span><button class="q-delete-btn" onclick="deleteQuestion('+i+')">&#215;</button>';html+='</div>';if(q.type==='select'&&!q.locked)html+='<textarea class="q-options-textarea" id="qopts_'+i+'" placeholder="One option per line">'+(q.options||[]).join('\n')+'</textarea>';html+='<div class="q-req-row"><input type="checkbox" id="qreq_'+i+'"'+(q.required?' checked':'')+(q.locked?' disabled':'')+'><label for="qreq_'+i+'">Required</label></div></div>';});
+  document.getElementById('questionsEditor').innerHTML=html;
+}
+function addQuestion(){var qs=getQuestions();qs.push({id:'q_'+Date.now(),label:'New Question',type:'text',placeholder:'',required:false,locked:false});localStorage.setItem('fi_questions',JSON.stringify(qs));renderQuestionsEditor();}
+function deleteQuestion(i){var qs=getQuestions();if(qs[i].locked)return;qs.splice(i,1);localStorage.setItem('fi_questions',JSON.stringify(qs));renderQuestionsEditor();}
+function saveQuestions(){var qs=getQuestions();qs.forEach(function(q,i){var lEl=document.getElementById('qlabel_'+i);if(lEl&&!q.locked)q.label=lEl.value.trim();var rEl=document.getElementById('qreq_'+i);if(rEl&&!q.locked)q.required=rEl.checked;var oEl=document.getElementById('qopts_'+i);if(oEl)q.options=oEl.value.split('\n').map(function(s){return s.trim();}).filter(Boolean);});localStorage.setItem('fi_questions',JSON.stringify(qs));document.getElementById('questionsSaveStatus').innerHTML='<span class="status-pill pill-ok">\u2713 Saved</span>';}
+function buildBookingsTable(){
+  var bookings=getBookings(),filterLoc=document.getElementById('filterLocation').value,filterStatus=document.getElementById('filterStatus').value,filterSearch=document.getElementById('filterSearch').value.toLowerCase(),all=Object.values(bookings);
+  var locFilter=document.getElementById('filterLocation'),locsSeen={},currentVal=locFilter.value;all.forEach(function(b){locsSeen[b.locId]=b.locName;});locFilter.innerHTML='<option value="">All locations</option>';Object.keys(locsSeen).sort().forEach(function(id){locFilter.innerHTML+='<option value="'+id+'"'+(id===currentVal?' selected':'')+'>'+locsSeen[id]+'</option>';});
+  var filtered=all.filter(function(b){if(filterLoc&&b.locId!==filterLoc)return false;if(filterStatus==='active'&&b.status==='cancelled')return false;if(filterStatus==='confirmed'&&b.status!=='confirmed')return false;if(filterStatus==='cancelled'&&b.status!=='cancelled')return false;if(filterStatus==='rescheduled'&&b.status!=='rescheduled')return false;if(filterSearch){var s=(b.name+' '+b.email+' '+(b.bookingId||'')+' '+b.locName).toLowerCase();if(s.indexOf(filterSearch)<0)return false;}return true;});
+  document.getElementById('bookingsCount').textContent=filtered.length+' booking'+(filtered.length!==1?'s':'')+' shown (of '+all.length+' total)';
+  if(!filtered.length){document.getElementById('bookingsTableContainer').innerHTML='<div class="no-bookings">No bookings match your filters.</div>';return;}
+  var html='';filtered.sort(function(a,b){return new Date(b.bookedAt)-new Date(a.bookedAt);}).forEach(function(b){var bc=b.status==='confirmed'?'badge-confirmed':b.status==='cancelled'?'badge-cancelled':'badge-rescheduled';html+='<div class="booking-row" onclick="toggleBookingDetail(\''+b.token+'\')">';html+='<div class="booking-row-top"><div class="booking-name">'+b.name+'</div><span class="booking-status-badge '+bc+'">'+b.status+'</span></div>';html+='<div class="booking-row-sub">'+b.locName+' \u00b7 '+(b.slotLabel||b.slot)+' \u00b7 '+(b.date||'')+'</div>';html+='<div class="booking-detail-panel" id="detail_'+b.token+'"><div class="detail-grid">';html+='<div class="detail-item"><div class="detail-label">Email</div><div class="detail-value">'+b.email+'</div></div><div class="detail-item"><div class="detail-label">Phone</div><div class="detail-value">'+(b.phone||'\u2014')+'</div></div><div class="detail-item"><div class="detail-label">Club Type</div><div class="detail-value">'+(b.clubType||'\u2014')+'</div></div><div class="detail-item"><div class="detail-label">Handicap</div><div class="detail-value">'+(b.handicap||'\u2014')+'</div></div><div class="detail-item"><div class="detail-label">Booking ID</div><div class="detail-value" style="font-size:11px;font-family:monospace">'+(b.bookingId||'\u2014')+'</div></div><div class="detail-item"><div class="detail-label">Pro</div><div class="detail-value">'+(b.pro||'\u2014')+'</div></div>';if(b.currentClubs)html+='<div class="detail-item" style="grid-column:1/-1"><div class="detail-label">Current Clubs</div><div class="detail-value">'+b.currentClubs+'</div></div>';if(b.referral)html+='<div class="detail-item" style="grid-column:1/-1"><div class="detail-label">Referral</div><div class="detail-value">'+b.referral+'</div></div>';html+='</div><div class="detail-actions">';if(b.status!=='cancelled')html+='<button class="btn-danger" onclick="event.stopPropagation();adminCancelBooking(\''+b.token+'\')">Cancel</button>';html+='</div></div></div>';});
+  document.getElementById('bookingsTableContainer').innerHTML=html;
+}
+function toggleBookingDetail(token){var p=document.getElementById('detail_'+token);if(p)p.classList.toggle('open');}
+function adminCancelBooking(token){if(!confirm('Cancel this booking? This will free the slot.'))return;var bookings=getBookings(),cfg=getConfig();Object.keys(bookings).forEach(function(k){if(bookings[k].token===token){var b=bookings[k];if(cfg.scriptUrl)callScript({action:'cancelSlot',booking:b});if(cfg.scriptUrl)callScript({action:'sendEmail',emailType:'cancellation',booking:b,baseUrl:cfg.baseUrl||window.location.href.split('?')[0]});delete bookings[k];}});saveBookingsStore(bookings);buildBookingsTable();}
+function loadSettings(){var s=getSettings();document.getElementById('cfgEventName').value=s.eventName||'';document.getElementById('cfgDuration').value=s.duration||60;document.getElementById('cfgTagline').value=s.tagline||'';}
+function saveSettings(){var s={eventName:document.getElementById('cfgEventName').value.trim(),duration:parseInt(document.getElementById('cfgDuration').value)||60,tagline:document.getElementById('cfgTagline').value.trim()};localStorage.setItem('fi_settings',JSON.stringify(s));document.getElementById('settingsSaveStatus').innerHTML='<span class="status-pill pill-ok">\u2713 Saved</span>';}
+function clearBookings(){if(!confirm('Clear ALL bookings? This cannot be undone.'))return;localStorage.removeItem('fi_bookings');alert('All bookings cleared.');buildBookingsTable();}
+function promptAdminPass(){document.getElementById('passcodeInput').value='';document.getElementById('passcodeError').style.display='none';document.getElementById('passcodeOverlay').classList.add('open');setTimeout(function(){document.getElementById('passcodeInput').focus();},100);}
+function closePasscode(){document.getElementById('passcodeOverlay').classList.remove('open');}
+function checkPasscode(){var val=document.getElementById('passcodeInput').value.trim();if(val===ADMIN_PASS){currentAdminLevel='full';closePasscode();openAdmin();}else if(val===COACH_PASS){currentAdminLevel='coach';closePasscode();openAdmin();}else{document.getElementById('passcodeError').style.display='block';document.getElementById('passcodeInput').value='';document.getElementById('passcodeInput').focus();}}
+function openAdmin(){var isCoach=currentAdminLevel==='coach';document.getElementById('adminBadge').textContent=isCoach?'\ud83c\udfcc\ufe0f Coach Access':'\u2699\ufe0f Full Access';document.querySelectorAll('[data-admin-only]').forEach(function(el){el.style.display=isCoach?'none':'';});loadEmailSettings();loadSettings();if(isCoach){switchTab('tabBookings');}else{renderLocationsEditor();renderQuestionsEditor();switchTab('tabEmail');}buildBookingsTable();document.getElementById('adminOverlay').classList.add('open');}
+function closeAdmin(){document.getElementById('adminOverlay').classList.remove('open');}
+function switchTab(id){document.querySelectorAll('.modal-section').forEach(function(s){s.classList.remove('active');});document.querySelectorAll('.modal-tab').forEach(function(t){t.classList.remove('active');});var sec=document.getElementById(id),tab=document.getElementById('tab-'+id);if(sec)sec.classList.add('active');if(tab)tab.classList.add('active');}
+window.addEventListener('load',function(){renderIntakeForm();var params=new URLSearchParams(window.location.search),token=params.get('token'),action=params.get('action');if(token){if(action==='cancel'){loadManageBooking(token);customerCancel(token);}else{loadManageBooking(token);}}else{goToStep(1);}});
+</script>
+</body>
+</html>
